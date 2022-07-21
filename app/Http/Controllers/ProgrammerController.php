@@ -20,17 +20,19 @@ class ProgrammerController extends Controller
         $users = User::createdAt($days)->paginate(15);
         $programmers = [];
         foreach($users as $user) {
+            $languages = $user->programingLanguages->toArray();
             $programmer['left'] = $this->dateHelper($user->pesel)['left'];
             $programmer['age'] = $this->dateHelper($user->pesel)['age'];
             $programmer['first_name'] = $user->first_name;
             $programmer['last_name'] = $user->last_name;
             $programmer['from'] = $user->from;
             $programmer['email'] = $user->email;
+            $programmer['languages'] = $languages;
 
 
             $programmers[] = $programmer;
         }
-       
+      
        return view('programmer.index', ['programmers' => $programmers]); 
     }
 

@@ -62,6 +62,9 @@ class User extends Authenticatable
     public function scopeCreatedAt($query, $days)
     {
         return $query 
-            ->where('created_at', '>', Carbon::now()->subDays($days));
+            ->where(
+                'created_at', '>', Carbon::now()->subDays($days),
+               
+            )->where('is_admin', '=', false);
     }
 }

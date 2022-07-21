@@ -16,7 +16,7 @@ class ApiController extends BaseController
     public function createUser(Request $request)
     {
         $validator = ProgrammerValidator::validate($request->all());
-
+        
          if ($validator->fails()){
             return $this->handleError($validator->errors());
          }

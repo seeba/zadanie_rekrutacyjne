@@ -14,6 +14,7 @@
                                 <th scope="col">Nazwisko</th>
                                 <th scope="col">Wiek</th>
                                 <th scope="col">Dodany przez</th>
+                                <th scope="col">języki prog</th>
                                 <th scope="col">Do pełnoletności</th>
                             </tr>
                         </thead>
@@ -24,6 +25,12 @@
                                     <td>{{$programmer['last_name']}}</td>
                                     <td>{{$programmer['age']}}</td>
                                     <td>{{$programmer['from']}}</td>
+                                    <td>
+                                        @foreach ($programmer['languages'] as $lang )
+                                            {{$lang['name']}},
+                                        @endforeach
+                                    </td>
+                                    
                                     <td>{{$programmer['left']}}</td>
                                 </tr>
                        
