@@ -20,8 +20,10 @@ class ApiController extends BaseController
          if ($validator->fails()){
             return $this->handleError($validator->errors());
          }
+         $data = $request->all();
+         $data['from'] = 'API';
          $programmerFactory = new ProgrammerFactory();
-         $programmer = $programmerFactory->createFrom($request->all());
+         $programmer = $programmerFactory->createFrom($data);
          if ($programmer['send_mail']) Mail::to($programmer['programmer']->email)->send(new Hello($programmer['programmer']));
 
          return $this->handleResponse($programmer['programmer']);
